@@ -1,10 +1,11 @@
 import { createClient } from "@libsql/client";
 import { NextResponse } from "next/server";
+import dotenv from "dotenv";
+dotenv.config();
 
 const db = createClient({
-  url: "libsql://linkpersondatabase-kralluz.turso.io",
-  authToken:
-    "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3MzUyNTAyNjUsImlkIjoiZmJjNjI4ZmQtNDA5YS00MmYyLThkYTctNDllMWUwZDkzNmVjIn0.MZuEuPspVa2Q-f5CWmWKX3F2D_6Lda5O4Nj6Gihk0OrU_FEeqsCKaektemi5u3_UjIPiiJate_zGQvar5l3TCQ", // Substitua pelo token de autenticação, se necessário
+  url: process.env.TURSO_URL!,
+  authToken: process.env.TURSO_TOKEN,
 });
 
 async function createTables() {
