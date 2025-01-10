@@ -1,74 +1,67 @@
-/* Estilos gerais para o body e fonte */
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #e5ddd5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
   margin: 0;
-  padding: 20px; /* Adiciona um padding geral para evitar que o conteúdo toque as bordas em telas pequenas */
-  box-sizing: border-box; /* Garante que o padding seja incluído na largura total */
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Container principal */
+main {
+  padding: 20px;
+  min-height: calc(100vh - 160px);
+}
+
 .container {
   background-color: #f2f2f2;
-  padding: 20px; /* Reduzido o padding para telas menores */
+  padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra mais sutil */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   max-width: 500px;
   width: 100%;
+  margin: auto;
 }
 
-/* Título */
 .title {
   color: #075e54;
   text-align: center;
-  margin-bottom: 20px; /* Reduzido o margin-bottom para telas menores */
-  font-size: 24px; /* Reduzido o tamanho da fonte para telas menores */
+  margin-bottom: 20px;
+  font-size: 24px;
 }
 
-/* Formulário */
 .form {
   display: flex;
   flex-direction: column;
 }
 
-/* Campos de entrada e área de texto */
 .input,
 .textarea {
-  padding: 8px; /* Reduzido o padding para telas menores */
-  margin-bottom: 10px; /* Reduzido o margin-bottom para telas menores */
+  padding: 8px;
+  margin-bottom: 10px;
   border: 1px solid #cfd7df;
   border-radius: 5px;
-  font-size: 14px; /* Reduzido o tamanho da fonte para telas menores */
+  font-size: 14px;
 }
 
 .textarea {
-  min-height: 100px; /* Reduzido o min-height para telas menores */
+  min-height: 100px;
   resize: none;
 }
 
-/* Grupo de botões de rádio (removido pois não está sendo utilizado no código fornecido) */
-/* Se for necessário, adicione estilos específicos para .radio-group e .radio-group label */
-
-/* Botão principal */
 .button {
   background-color: #25d366;
   color: #fff;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
-  font-size: 16px; /* Reduzido o tamanho da fonte para telas menores */
+  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Adicionada transição para box-shadow */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil para o botão */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .button:hover {
   background-color: #128c7e;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* Sombra um pouco mais intensa no hover */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
 .button:disabled {
@@ -76,48 +69,44 @@ body {
   cursor: default;
 }
 
-/* Informações */
 .info {
   background-color: #fff;
-  padding: 15px; /* Reduzido o padding para telas menores */
+  padding: 15px;
   border-radius: 10px;
-  margin-bottom: 15px; /* Reduzido o margin-bottom para telas menores */
+  margin-bottom: 15px;
 }
 
 .info p {
-  margin-bottom: 8px; /* Reduzido o margin-bottom para telas menores */
+  margin-bottom: 8px;
 }
 
 .info strong {
   color: #075e54;
 }
 
-/* Link Preview */
 .link-preview {
-  margin-top: 15px; /* Reduzido o margin-top para telas menores */
+  margin-top: 15px;
   background-color: #fff;
-  padding: 15px; /* Reduzido o padding para telas menores */
+  padding: 15px;
   border-radius: 10px;
 }
 
 .link-preview p {
-  margin-bottom: 8px; /* Reduzido o margin-bottom para telas menores */
+  margin-bottom: 8px;
 }
 
-/* Área de texto para o link */
 .link-textarea {
-  width: calc(100% - 20px); /* Ajusta a largura para considerar o padding */
-  padding: 8px; /* Reduzido o padding para telas menores */
-  margin-bottom: 8px; /* Reduzido o margin-bottom para telas menores */
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin-bottom: 8px;
   border: 1px solid #cfd7df;
   border-radius: 5px;
   font-size: 14px;
   resize: vertical;
 }
 
-/* Botão de cópia */
 .copy-button {
-  margin-right: 5px; /* Reduzido o margin-right para telas menores */
+  margin-right: 5px;
   margin-left: 10px;
   background-color: #e7e7e7;
   color: #333;
@@ -135,7 +124,6 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
-/* Mensagem de erro */
 .error-message {
   color: red;
   font-size: 12px;
@@ -146,7 +134,7 @@ body {
 .link {
   word-break: break-all;
 }
-/* Media query para telas menores que 480px (ex: smartphones) */
+
 @media (max-width: 480px) {
   .container {
     padding: 15px;
@@ -174,27 +162,25 @@ body {
   }
 }
 
-/* ... outros estilos ... */
-
 .link-container {
   display: flex;
   align-items: center;
-  gap: 10px; /* Espaço entre o link e o botão */
+  gap: 10px;
   word-break: break-all;
 }
 
 .link-text {
-  flex-grow: 1; /* Faz o texto do link ocupar o espaço disponível */
+  flex-grow: 1;
 }
 
 .copy-button {
-  background-color: transparent; /* Fundo transparente */
+  background-color: transparent;
   border: none;
   padding: 5px;
   cursor: pointer;
-  display: flex; /* Para centralizar o ícone */
-  align-items: center; /* Para centralizar o ícone */
-  justify-content: center; /* Para centralizar o ícone */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
@@ -204,7 +190,6 @@ body {
 }
 
 .copy-button svg {
-  /* Estilos para o ícone dentro do botão */
   color: #075e54;
   font-size: 16px;
 }
@@ -215,20 +200,15 @@ body {
   margin-left: 10px;
 }
 
-/* ... outros estilos ... */
-
-/* Media query para telas menores que 480px (ex: smartphones) */
 @media (max-width: 480px) {
-  /* ... outros estilos para telas pequenas ... */
-
   .link-container {
-    flex-direction: column; /* Em telas pequenas, o botão vai para baixo do link */
+    flex-direction: column;
     align-items: flex-start;
     gap: 5px;
   }
 
   .copy-button {
     margin-top: 0px;
-    width: auto; /* O botão não ocupa mais 100% da largura */
+    width: auto;
   }
 }

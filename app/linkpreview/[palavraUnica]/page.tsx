@@ -1,7 +1,7 @@
-"use client"; // Certifique-se de que esta linha está no topo
+"use client";
 
 import { useState, useEffect } from "react";
-import { useParams, useRouter } from "next/navigation"; // Import correto para App Router
+import { useParams, useRouter } from "next/navigation";
 import { IoCopyOutline } from "react-icons/io5";
 import "../../styles/App.css";
 
@@ -9,8 +9,8 @@ export default function LinkPreviewPage() {
   const params = useParams();
   const palavraUnica = params.palavraUnica as string;
   const [dados, setDados] = useState<any>(null);
-  const [linkCopiado, setLinkCopiado] = useState(false); // Estado para controlar a mensagem de link copiado
-  const router = useRouter(); // Renomeei para 'router' para clareza
+  const [linkCopiado, setLinkCopiado] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,9 +31,9 @@ export default function LinkPreviewPage() {
 
   const handleCopiarLink = () => {
     navigator.clipboard.writeText(gerarLinkRedirecionamento());
-    setLinkCopiado(true); // Define o estado como copiado
+    setLinkCopiado(true);
     setTimeout(() => {
-      setLinkCopiado(false); // Reseta o estado após 2 segundos
+      setLinkCopiado(false);
     }, 2000);
   };
 
@@ -52,13 +52,24 @@ export default function LinkPreviewPage() {
           <strong>Link:</strong>
           <span className="link-text">{gerarLinkRedirecionamento()}</span>
           <button className="copy-button" onClick={handleCopiarLink}>
-            <IoCopyOutline /> {/* Ícone de cópia */}
+            <IoCopyOutline />
           </button>
           {linkCopiado && <span className="copy-message">Copiado!</span>}
           <button
             className="generate-button"
             onClick={() => {
-              router.push("/"); // Uso correto do router.push no App Router
+              router.push("/");
+            }}
+            style={{
+              backgroundColor: "#25D366",
+              color: "#ffffff",
+              border: "none",
+              padding: "10px 20px",
+              borderRadius: "4px",
+              fontSize: "16px",
+              fontWeight: 500,
+              cursor: "pointer",
+              transition: "background-color 0.3s ease, box-shadow 0.3s ease",
             }}
           >
             Gerar novamente
