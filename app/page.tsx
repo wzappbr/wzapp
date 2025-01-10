@@ -102,7 +102,7 @@ export default function HomePage() {
 
   return (
     <div className="container">
-      <h1 className="title">Gerador de Link WhatsApp</h1>
+      <h1 className="title">Bem vindo ao Wzapp.Link</h1>
       <form onSubmit={handleSubmit} className="form">
         <input
           type="text"
