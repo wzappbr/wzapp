@@ -14,7 +14,7 @@ const Header: React.FC = () => {
               alt="Logo da Empresa"
               fill
               className="logo"
-              style={{ objectFit: "contain" }} // Mantém a proporção
+              style={{ objectFit: "contain" }}
             />
           </div>
         </Link>
