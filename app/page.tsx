@@ -17,14 +17,40 @@ export default function HomePage() {
     setDomain(window.location.origin);
   }, []);
 
-  const handleLinkChange = async (e: any) => {
+  // Função para aplicar a máscara ao telefone
+  const handleNumeroChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Remove tudo que não for dígito
+    let rawValue = e.target.value.replace(/\D/g, "");
+
+    // Limita para no máximo 11 dígitos
+    rawValue = rawValue.substring(0, 11);
+
+    // Aplica a máscara (12) 3 6547-8945
+    let maskedValue = "";
+    if (rawValue.length > 0) {
+      maskedValue = "(" + rawValue.substring(0, 2);
+    }
+    if (rawValue.length >= 3) {
+      maskedValue += ") " + rawValue.substring(2, 3);
+    }
+    if (rawValue.length >= 4) {
+      maskedValue += " " + rawValue.substring(3, 7);
+    }
+    if (rawValue.length >= 8) {
+      maskedValue += "-" + rawValue.substring(7, 11);
+    }
+
+    setNumero(maskedValue);
+  };
+
+  const handleLinkChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const novoLink = e.target.value;
     setLink(novoLink);
 
     if (novoLink) {
       const response = await fetch(`/api?palavraUnica=${novoLink}`);
       if (response.ok) {
-        const data = await response.json();
+        await response.json();
         setLinkExiste(true);
       } else {
         if (response.status === 404) {
@@ -39,29 +65,28 @@ export default function HomePage() {
     }
   };
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (
-    event
-  ) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
+
+    // Remove tudo que não for dígito antes de enviar ao backend
+    const numeroSemMascara = numero.replace(/\D/g, "");
 
     console.log("HomePage - Enviando dados:", {
       empresa,
       mensagem,
-      numero,
+      numero: numeroSemMascara,
       palavraUnica: link,
     });
 
-    if (!numero.match(/^\d{10,11}$/)) {
-      alert(
-        "Por favor, insira um número de WhatsApp válido com 10 ou 11 dígitos."
-      );
+    // Validação de formato do número sem máscara
+    if (!numeroSemMascara.match(/^\d{10,11}$/)) {
+      alert("Por favor, insira um número de WhatsApp válido com 10 ou 11 dígitos.");
       return;
     }
     if (!link) {
       alert("Por favor, insira uma palavra única para o link.");
       return;
     }
-
     if (linkExiste) {
       alert("O link já está em uso. Por favor, escolha outro.");
       return;
@@ -77,7 +102,7 @@ export default function HomePage() {
       body: JSON.stringify({
         empresa,
         mensagem,
-        numero,
+        numero: numeroSemMascara, // Enviando sem espaços e símbolos
         tipoLink: "aleatorio",
         palavraUnica: link,
       }),
@@ -123,7 +148,7 @@ export default function HomePage() {
           type="text"
           placeholder="Número do WhatsApp (DDD + Número)"
           value={numero}
-          onChange={(e) => setNumero(e.target.value)}
+          onChange={handleNumeroChange}
           required
           className="input"
         />
